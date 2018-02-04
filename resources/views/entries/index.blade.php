@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', __('Entries'))
+@section('title', __('All Entries'))
 
 @section('content')
 <div class="container">
     <div class="row">
-        <h1>{{ __('Entries') }}</h1>
+        <h1>{{ __('All Entries') }}</h1>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>

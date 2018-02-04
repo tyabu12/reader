@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
-@section('title', __('Feeds'))
+@section('title', __('All Feeds'))
 
 @section('content')
 <div class="container">
     <div class="row">
+        <h1>{{ __('All Feeds') }}</h1>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
