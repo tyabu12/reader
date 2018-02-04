@@ -8,6 +8,6 @@ class Entry extends Model
 {
     public function feed()
     {
-        return $this->belongTo('App\Feed');
+        return $this->belongsTo('App\Feed');
     }
 }
