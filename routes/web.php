@@ -17,9 +17,11 @@ Route::view('/', 'welcome')->name('welcome');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('entries', 'EntryController',
-    ['only' => ['index', 'show']]);
+Route::resource('entries', 'EntryController', [
+    'only' => ['index', 'show'],
+]);
 
-Route::resource('feeds', 'FeedController',
-    ['only' => ['index', 'show']]);
+Route::resource('feeds', 'FeedController', [
+    'only' => ['index', 'show'],
+]);
 
