@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', __('Entry Detail'))
+
 @section('content')
 <div class="container">
     <h1>{{ $entry->title }}</h1>
