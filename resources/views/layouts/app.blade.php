@@ -29,15 +29,14 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
+                    <a class="navbar-brand" href="{{ route('home') }}">{{ config('app.name') }}</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li><a href="{{ route('feeds.index') }}">{{ __('Feeds') }}</a></li>
+                        <li><a href="{{ route('entries.index') }}">{{ __('Entries') }}</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
