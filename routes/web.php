@@ -25,3 +25,7 @@ Route::resource('feeds', 'FeedController', [
     'only' => ['index', 'show'],
 ]);
 
+Route::resource('subscribes', 'SubscribeController', [
+    'only' => ['store'],
+]);
+
