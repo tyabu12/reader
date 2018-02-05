@@ -5,22 +5,24 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <h1>{{ __('All Feeds') }}</h1>
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>{{ __('Name') }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach ($feeds as $feed)
-                    <tr>
-                        <td><a href="{{ url('feeds/'.$feed->id) }}">{{ $feed->name }}</a></td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1>{{ __('All Feeds') }}</h1>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tbody>
+                        @foreach ($feeds as $feed)
+                            <tr>
+                                <td><a href="{{ url('feeds/'.$feed->id) }}">{{ $feed->name }}</a></td>
+                                <td><a href="{{ url($feed->url) }}">{{ $feed->url }}</a></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
