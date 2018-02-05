@@ -8,6 +8,12 @@ class Feed extends Model
 {
     public function entries()
     {
-        return $this->hasMany('App\Entry')->latest();
+        return $this->hasMany('App\Entry');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'subscribes')
+            ->withTimestamps();
     }
 }
