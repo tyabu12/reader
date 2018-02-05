@@ -47,17 +47,22 @@ class SubscribeController extends Controller
      */
     public function store(Request $request)
     {
-        $feed_id = Feed::where('url', $request->url)
-            ->first(['id'])->id;
+        $feed = Feed::where('url', $request->feed_url)
+            ->first(['id', 'name']);
 
-        if (!$feed_id) abort('404');
+        if (!$feed)
+        {
+            return redirect()->back()
+                ->with('message', 'Invalid URL.');
+        }
 
         $subscribe = new Subscribe;
         $subscribe->user_id = Auth::id();
-        $subscribe->feed_id = $feed_id;
+        $subscribe->feed_id = $feed->id;
         $subscribe->save();
 
-        return redirect()->back();
+        return redirect()->back()
+            ->with('message', 'Now you\'re following '.$feed->name.' .');
     }
 
     /**

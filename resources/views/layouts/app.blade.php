@@ -89,8 +89,8 @@
                   </div>
 
                   <div class="modal-body">
-                      <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
-                          <input id="feed-url" type='text' class="form-control" name="url"
+                      <div class="form-group{{ $errors->has('feed_url') ? ' has-error' : '' }}">
+                          <input id="feed-url" type='text' class="form-control" name="feed_url"
                               placeholder="{{ __('Input URL') }}" required autofocus></input>
                       </div>
                   </div>
@@ -103,6 +103,16 @@
             </div>
           </div>
         </div>
+
+        @if (session('message'))
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="alert alert-warning">
+                        {{ session('message') }}
+                    </div>
+                </div>
+            </div>
+        @endif
 
         @yield('content')
     </div>
