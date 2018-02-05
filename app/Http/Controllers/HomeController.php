@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Entry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $feed_ids = Auth::user()
+            ->feeds()
+            ->get(['feed_id'])
+            ->pluck('feed_id')
+            ->toArray();
+
+        $entries = Entry::with('feed:id,name')
+            ->whereIn('feed_id', $feed_ids)
+            ->orderBy('published_at', 'desc')
+            ->simplePaginate(50);
+
+        return view('home', ['entries' => $entries]);
     }
 }

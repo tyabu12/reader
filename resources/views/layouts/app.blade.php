@@ -35,6 +35,9 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
+                        <li><button class="btn btn-success" data-toggle="modal" data-target="#subscribeModal">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </button></li>
                         <li><a href="{{ route('feeds.index') }}">{{ __('Feeds') }}</a></li>
                         <li><a href="{{ route('entries.index') }}">{{ __('Entries') }}</a></li>
                     </ul>
@@ -72,6 +75,31 @@
                 </div>
             </div>
         </nav>
+        <div class="modal fade" id="subscribeModal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form method="POST" action="{{ route('subscribes.store') }}">
+                  {{ csrf_field() }}
+
+                  <div class="modal-header">
+                    <h4 class="modal-title">{{ __('Add a New Feed') }}</h4>
+                  </div>
+
+                  <div class="modal-body">
+                      <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
+                          <input id="feed-url" type='text' class="form-control" name="url"
+                              placeholder="{{ __('Input URL') }}" required autofocus></input>
+                      </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('Cancel') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Add') }}</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
 
         @yield('content')
     </div>
