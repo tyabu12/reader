@@ -47,7 +47,9 @@ class SubscribeController extends Controller
      */
     public function store(Request $request)
     {
-        $feed_id = Feed::where('url', $request->url)->first(['id'])->id;
+        $feed_id = Feed::where('url', $request->url)
+            ->first(['id'])->id;
+
         if (!$feed_id) abort('404');
 
         $subscribe = new Subscribe;
@@ -55,7 +57,7 @@ class SubscribeController extends Controller
         $subscribe->feed_id = $feed_id;
         $subscribe->save();
 
-        return redirect()->route('home');
+        return redirect()->back();
     }
 
     /**
