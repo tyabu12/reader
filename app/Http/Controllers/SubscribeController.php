@@ -56,10 +56,7 @@ class SubscribeController extends Controller
                 ->with('message', 'Invalid URL.');
         }
 
-        $subscribe = new Subscribe;
-        $subscribe->user_id = Auth::id();
-        $subscribe->feed_id = $feed->id;
-        $subscribe->save();
+        Auth::user()->feeds()->attach($feed->id);
 
         return redirect()->back()
             ->with('message', 'Now you\'re following '.$feed->name.' .');
