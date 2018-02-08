@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Feed;
+use App\Entry;
 use App\Subscribe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,8 +53,13 @@ class SubscribeController extends Controller
 
         if (!$feed)
         {
-            return redirect()->back()
-                ->with('message', 'Invalid URL.');
+            $feed = new Feed();
+
+            if (!$feed->fetch($request->feed_url))
+                return redirect()->back()
+                    ->with('message', 'Invalid URL.');
+
+            Entry::fetchEntries($feed->id);
         }
 
         Auth::user()->feeds()->attach($feed->id);
