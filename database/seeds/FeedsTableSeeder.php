@@ -1,5 +1,6 @@
 <?php
 
+use App\Feed;
 use Illuminate\Database\Seeder;
 
 class FeedsTableSeeder extends Seeder
@@ -11,13 +12,23 @@ class FeedsTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create('ja_JP');
+        $feed_urls = [
+          'http://feeds.lifehacker.jp/rss/lifehacker/index.xml',
+          'http://www.huffingtonpost.jp/rss/index.xml',
+          'https://berss.com/feed/Top.aspx?feed=http://portal.nifty.com/rss/headline.rdf',
+          'https://rocketnews24.com/feed/',
+          'https://digiday.jp/feed/',
+          'http://blog.livedoor.jp/dqnplus/index.rdf',
+          'http://gigazine.net/news/rss_2.0/',
+          'http://feed.japan.cnet.com/rss/index.rdf',
+          'http://blogos.com/rss/blogos/summary.xml',
+          'http://itlifehack.jp/atom.xml'
+        ];
 
-        for ($i = 0; $i < 20; $i++) {
-            DB::table('feeds')->insert([
-                'name' => $faker->domainName(),
-                'url' => $faker->unique()->url()
-            ]);
+        foreach ($feed_urls as $feed_url)
+        {
+            $feed = new Feed();
+            $feed->fetch($feed_url);
         }
     }
 }
