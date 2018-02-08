@@ -14,14 +14,14 @@ class CreateSubscribesTable extends Migration
     public function up()
     {
         Schema::create('subscribes', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
-            $table->integer('feed_id')->unsigned();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('feed_id');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')
-                ->onDelete('cascade');
-            $table->foreign('feed_id')->references('id')->on('feeds')
-                ->onDelete('cascade');
+            $table->foreign('user_id')
+                ->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('feed_id')
+                ->references('id')->on('feeds')->onDelete('cascade');
 
             $table->unique(['user_id', 'feed_id']);
         });

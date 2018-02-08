@@ -15,13 +15,14 @@ class CreateEntriesTable extends Migration
     {
         Schema::create('entries', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('feed_id')->unsigned();
-            $table->foreign('feed_id')->references('id')->on('feeds')
-                ->onDelete('cascade');
+            $table->unsignedInteger('feed_id');
             $table->string('title');
             $table->string('url');
             $table->dateTime('published_at')->index('entries_published_at_index');
             $table->timestamps();
+
+            $table->foreign('feed_id')
+                ->references('id')->on('feeds')->onDelete('cascade');
         });
     }
 
