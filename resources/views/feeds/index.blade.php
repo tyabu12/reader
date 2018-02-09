@@ -15,7 +15,7 @@
                         <tbody>
                         @foreach ($feeds as $feed)
                             <tr>
-                                <td><a href="{{ url('feeds/'.$feed->id) }}">{{ $feed->name }}</a></td>
+                                <td><a href="{{ url('entries/?feed_id='.$feed->id) }}">{{ $feed->name }}</a></td>
                                 <td><a href="{{ url($feed->url) }}">{{ $feed->url }}</a></td>
                             </tr>
                         @endforeach
