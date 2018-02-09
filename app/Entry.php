@@ -27,22 +27,23 @@ class Entry extends Model
 
         $now = new \DateTime();
         $items = $pie->get_items();
-        $new_entries = [];
+        $new_entries = collect();
 
         foreach ($items as $item) {
             if (!$feed->entries()->where('url', $item->get_link())->exists())
             {
-                $new_entries[] = [
+                $new_entries->push([
                     'feed_id'      => $feed_id,
                     'title'        => $item->get_title(),
                     'url'          => $item->get_link(),
                     'published_at' => new \DateTime($item->get_date()),
                     'created_at'   => $now,
                     'updated_at'   => $now
-                ];
+                ]);
             }
         }
 
-        self::insert($new_entries);
+        if (!$new_entries->isEmpty())
+            self::insert($new_entries->toArray());
     }
 }
