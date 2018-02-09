@@ -16,7 +16,7 @@ class EntryController extends Controller
     public function index()
     {
         $entries = Entry::orderByDesc('published_at')
-            ->simplePaginate(50);
+            ->simplePaginate(env('MAX_ENTRIES_PER_PAGE'));
 
         return view('entries.index', ['entries' => $entries]);
     }

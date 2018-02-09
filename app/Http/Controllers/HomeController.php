@@ -35,7 +35,7 @@ class HomeController extends Controller
         $entries = Entry::with('feed:id,name')
             ->whereIn('feed_id', $feed_ids)
             ->orderByDesc('published_at')
-            ->simplePaginate(50);
+            ->simplePaginate(env('MAX_ENTRIES_PER_PAGE'));
 
         return view('home', ['entries' => $entries]);
     }
