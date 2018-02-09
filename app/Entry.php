@@ -46,4 +46,12 @@ class Entry extends Model
         if (!$new_entries->isEmpty())
             self::insert($new_entries->toArray());
     }
+
+    public static function fetchAllEntries()
+    {
+        $feeds = Feed::all(['id']);
+
+        foreach ($feeds as $feed)
+            self::fetchEntries($feed->id);
+    }
 }
