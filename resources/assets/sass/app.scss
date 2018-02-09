@@ -7,3 +7,45 @@
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+.row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.entry {
+    padding: 5px;
+    height: 97%;
+    margin-bottom: 3%;
+
+    .title a {
+        color: #444;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .title a:visited {
+        color: #777;
+    }
+
+    .title a:hover {
+        color: #3097D1;
+    }
+
+    .description {
+    }
+
+    .feed-name a {
+        color: #999;
+    }
+
+    .published-at {
+        color: #999;
+        text-align: right;
+        //position: absolute;
+        bottom: 0;
+    }
+}
