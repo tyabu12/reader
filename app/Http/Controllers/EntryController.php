@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Feed;
 use App\Entry;
+use App\Subscribe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EntryController extends Controller
 {
@@ -23,20 +25,21 @@ class EntryController extends Controller
 
         if ($feed)
         {
-            $title = $feed->name;
-            $entries = $entries->where('feed_id', $feed_id);
+            $entries = $entries->where('feed_id', $feed->id);
+            $is_subscring = Auth::check() ? Auth::user()->isSubscribing($feed) : false;
         }
         else
         {
-            $title =  __('All Entries');
+            $is_subscring = null;
         }
 
         $entries = $entries->orderByDesc('published_at')
             ->simplePaginate(env('MAX_ENTRIES_PER_PAGE'));
 
         return view('entries.index', [
-            'title' => $title,
-            'entries' => $entries
+            'feed' => $feed,
+            'entries' => $entries,
+            'is_subscring' => $is_subscring
         ]);
     }
 

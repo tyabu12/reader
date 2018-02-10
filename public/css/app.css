@@ -8358,10 +8358,14 @@ button.close {
       flex-wrap: wrap;
 }
 
+.row .col-sm-3 {
+  width: 24.9%;
+}
+
 .entry {
+  height: 200px;
   padding: 5px;
-  height: 97%;
-  margin-bottom: 3%;
+  padding-bottom: 30px;
 }
 
 .entry .title a {
@@ -8385,6 +8389,5 @@ button.close {
 .entry .published-at {
   color: #999;
   text-align: right;
-  bottom: 0;
 }
 

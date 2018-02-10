@@ -1,6 +1,3 @@
-@php
-    $now = now();
-@endphp
 <div class="row row-eq-height">
     @foreach ($entries as $entry)
         <div class="col-sm-3 col-xs-6">

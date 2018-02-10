@@ -32,4 +32,12 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Feed', 'subscribes')
             ->withTimestamps();
     }
+
+    public function isSubscribing(Feed $feed)
+    {
+        return $this->feeds()
+            ->wherePivot('feed_id', $feed->id)
+            ->exists();
+    }
+
 }

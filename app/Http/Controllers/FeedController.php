@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Feed;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FeedController extends Controller
 {
@@ -83,5 +84,55 @@ class FeedController extends Controller
     public function destroy(Feed $feed)
     {
         //
+    }
+
+    /**
+     * Subscribe the feed.
+     *
+     * @param  \App\Feed  $feed
+     * @return \Illuminate\Http\Response
+     */
+    public function subscribe(Request $request)
+    {
+        $this->middleware('auth');
+
+        $feed_url = $request->feed_url;
+        $feed = Feed::where('url', $feed_url)
+            ->first(['id', 'name']);
+
+        if (!$feed)
+        {
+            $feed = new feed();
+
+            if (!$feed->fetch($feed_url))
+                return redirect()->back()
+                    ->with('message', 'invalid url.');
+
+            entry::fetchentries($feed->id);
+        }
+
+        auth::user()->feeds()->attach($feed->id);
+
+        return redirect()->back();
+    }
+
+    /**
+     * Unsubscribe the feed.
+     *
+     * @param  \App\Feed  $feed
+     * @return \Illuminate\Http\Response
+     */
+    public function unsubscribe(Request $request)
+    {
+        $this->middleware('auth');
+
+        $feed_url = $request->feed_url;
+        $feed = Feed::where('url', $feed_url)
+            ->first(['id', 'name']);
+
+        if ($feed)
+            Auth::user()->feeds()->detach($feed->id);
+
+        return redirect()->back();
     }
 }

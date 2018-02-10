@@ -13,9 +13,7 @@
 
 Auth::routes();
 
-Route::view('/', 'welcome')->name('welcome');
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('entries', 'EntryController', [
     'only' => ['index', 'show'],
@@ -25,7 +23,9 @@ Route::resource('feeds', 'FeedController', [
     'only' => ['index', 'show'],
 ]);
 
-Route::resource('subscribes', 'SubscribeController', [
-    'only' => ['store'],
-]);
+Route::post('feed/subscribe', 'FeedController@subscribe')
+    ->name('feed.subscribe');
+
+Route::post('feed/unsubscribe', 'FeedController@unsubscribe')
+    ->name('feed.unsubscribe');
 
