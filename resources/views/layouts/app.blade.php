@@ -81,7 +81,7 @@
         <div class="modal fade" id="subscribeModal" tabindex="-1">
           <div class="modal-dialog">
             <div class="modal-content">
-              <form method="POST" action="{{ route('subscribes.store') }}">
+              <form method="POST" action="{{ route('feed.subscribe') }}">
                   {{ csrf_field() }}
 
                   <div class="modal-header">
