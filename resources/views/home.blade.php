@@ -7,7 +7,7 @@
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1>{{ __('Latest') }}</h1>
+                <h1>{{ __('Latest Entries') }}</h1>
             </div>
             <div class="panel-body">
                 @component('components.entries-show')
