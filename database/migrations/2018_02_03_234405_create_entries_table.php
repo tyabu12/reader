@@ -17,7 +17,7 @@ class CreateEntriesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('feed_id');
             $table->string('title');
-            $table->string('url');
+            $table->string('url', 1024);
             $table->dateTime('published_at')->index('entries_published_at_index');
             $table->timestamps();
 

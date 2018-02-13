@@ -14,7 +14,7 @@ class AddThumbnailUrlIntoEntries extends Migration
     public function up()
     {
         Schema::table('entries', function (Blueprint $table) {
-            $table->string('thumbnail_url')->nullable();
+            $table->string('thumbnail_url', 1024)->nullable()->after('url');
         });
     }
 
