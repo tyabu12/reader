@@ -49,6 +49,10 @@
                 font-size: 84px;
             }
 
+            .description {
+                font-size: 21px;
+            }
+
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
@@ -66,28 +70,13 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ route('home') }}"> {{ __('Home') }}</a>
-                    @else
-                        <a href="{{ route('login') }}">{{ __('Login') }}</a>
-                        <a href="{{ route('register') }}">{{ __('Register') }}</a>
-                    @endauth
-                </div>
-            @endif
-
             <div class="content">
                 <div class="title m-b-md">{{ config('app.name') }}</div>
-<!--
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                    <a href="{{ route('entries.index') }}">{{ __('Guest') }}</a>
                 </div>
--->
             </div>
         </div>
     </body>
