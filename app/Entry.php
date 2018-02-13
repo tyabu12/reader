@@ -34,13 +34,32 @@ class Entry extends Model
         foreach ($items as $item) {
             if (!$feed->entries()->where('url', $item->get_link())->exists())
             {
-                $enclosure = $item->get_enclosure(0);
+                $thumbnail_url = null;
+                if ($enclosure = $item->get_enclosure(0))
+                {
+                    $thumbnail_url = $enclosure->get_thumbnail();
+                    if (!$thumbnail_url
+                        && $enclosure->get_link()
+                        && stristr($enclosure->get_type(), 'image/'))
+                    {
+                        $thumbnail_url = $enclosure->get_link();
+                    }
+                }
+                if (!$thumbnail_url)
+                {
+                    if (preg_match( '/<img.*src\s*=\s*[\"|\'](.*?)[\"|\'].*>/i', $item->get_content(), $matches)
+                        && is_array($matches)
+                        && isset($matches[1]))
+                    {
+                        $thumbnail_url = $matches[1];
+                    }
+                }
 
                 $new_entries->push([
                     'feed_id'       => $feed_id,
                     'title'         => $item->get_title(),
                     'url'           => $item->get_link(),
-                    'thumbnail_url' => $enclosure ? $enclosure->get_thumbnail() : null,
+                    'thumbnail_url' => $thumbnail_url,
                     'published_at'  => new \DateTime($item->get_date()),
                     'created_at'    => $now,
                     'updated_at'    => $now
