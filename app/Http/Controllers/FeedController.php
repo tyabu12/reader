@@ -108,10 +108,10 @@ class FeedController extends Controller
                 return redirect()->back()
                     ->with('message', 'invalid url.');
 
-            entry::fetchentries($feed->id);
+            Entry::fetchEntries($feed->id);
         }
 
-        auth::user()->feeds()->attach($feed->id);
+        Auth::user()->feeds()->attach($feed->id);
 
         return redirect()->back();
     }

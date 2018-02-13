@@ -8362,6 +8362,11 @@ button.close {
   width: 24.9%;
 }
 
+.panel-heading a {
+  color: #111;
+  text-decoration: none;
+}
+
 .entry {
   height: 200px;
   padding: 5px;

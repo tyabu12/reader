@@ -26,13 +26,21 @@ class Feed extends Model
         if (!$pie->init()) return false;
         $pie->handle_content_type();
 
-        $this->name = $pie->get_title() ? $pie->get_title()  : '';
+        $this->name = $pie->get_title() ? $pie->get_title() : '';
         #$this->author =$pie->get_author() ? $pie->get_author() : '';
         $this->feed_url = $pie->subscribe_url() ? $pie->subscribe_url() : $feed_url;
-        #$this->url = $pie->get_link() ? $pie->get_link()   : '';
+        $this->link_url = $pie->get_link() ? $pie->get_link() : '';
 
         $this->save();
 
         return $this;
+    }
+
+    public static function fetchAllFeeds()
+    {
+        $feeds = Feed::all(['feed_url']);
+
+        foreach ($feeds as $feed)
+            $feed->fetch($feed->feed_url);
     }
 }
