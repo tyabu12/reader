@@ -11,10 +11,12 @@
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
-                @if (!$feed)
-                    <h1>{{ $title }}</h1>
-                @else
-                    <h1><a href="{{ url($feed->link_url) }}">{{ $title }}</a></h1>
+                <h1>
+                    <a href="{{ url($feed ? $feed->link_url : route('entries.index')) }}">
+                        {{ $title }}
+                    </a>
+                </h1>
+                @if ($feed)
                     @auth
                         @if ($is_subscring)
                             <form class="text-right" method="POST" action="{{ route('feed.unsubscribe') }}">
@@ -32,7 +34,7 @@
                     @endauth
                 @endif
             </div>
-            <div class="panel-body">
+            <div class="panel-body no-top-padding">
                 @component('components.entries-show')
                     @slot('entries', $entries)
                 @endcomponent

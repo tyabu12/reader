@@ -8358,27 +8358,47 @@ button.close {
       flex-wrap: wrap;
 }
 
-.row .col-sm-3 {
-  width: 24.9%;
-}
-
 .panel-heading a {
   color: #111;
   text-decoration: none;
 }
 
+.no-top-padding {
+  padding-top: 0;
+}
+
+.entry.with-img {
+  height: 350px;
+}
+
+.entry.without-img {
+  height: 175px;
+}
+
 .entry {
-  height: 200px;
-  padding: 5px;
-  padding-bottom: 30px;
+  border: 0.5px solid #eee;
+}
+
+.entry .thumbnail {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 180px;
+  margin: 20px auto 0 auto;
 }
 
 .entry .title a {
   color: #444;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.4;
   font-weight: bold;
   text-decoration: none;
+}
+
+@media (min-width: 800px) {
+  .entry .title a {
+    font-size: 18px;
+  }
 }
 
 .entry .title a:visited {
@@ -8387,6 +8407,18 @@ button.close {
 
 .entry .title a:hover {
   color: #3097D1;
+}
+
+.entry .footer {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+
+.entry .feed-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .entry .feed-name a {

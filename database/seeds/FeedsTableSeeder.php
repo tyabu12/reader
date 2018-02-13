@@ -28,7 +28,7 @@ class FeedsTableSeeder extends Seeder
         foreach ($feed_urls as $feed_url)
         {
             $feed = new Feed();
-            $feed->fetch($feed_url);
+            $feed->fetch($feed_url, false);
         }
     }
 }

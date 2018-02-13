@@ -16,23 +16,33 @@
     flex-wrap: wrap;
 }
 
-.row .col-sm-3 {
-    width: 24.9%;
-}
-
 .panel-heading a {
     color: #111;
     text-decoration: none;
 }
 
+.no-top-padding { padding-top: 0; }
+
+.entry.with-img    { height: 350px; }
+.entry.without-img { height: 175px; }
+
 .entry {
-    height: 200px;
-    padding: 5px;
-    padding-bottom: 30px;
+    border: 0.5px solid #eee;
+
+    .thumbnail {
+        width:  auto;
+        height: auto;
+        max-width:  100%;
+        max-height: 180px;
+        margin: 20px auto 0 auto;
+    }
 
     .title a {
         color: #444;
-        font-size: 18px;
+        font-size: 16px;
+        @media (min-width: 800px) {
+            font-size: 18px;
+        }
         line-height: 1.4;
         font-weight: bold;
         text-decoration: none;
@@ -47,6 +57,18 @@
     }
 
     .description {
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+    }
+
+    .feed-name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .feed-name a {

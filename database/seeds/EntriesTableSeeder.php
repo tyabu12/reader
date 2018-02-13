@@ -13,7 +13,6 @@ class EntriesTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach (Feed::all() as $feed)
-            Entry::fetchEntries($feed->id);
+        Entry::fetchAllEntries(false);
     }
 }

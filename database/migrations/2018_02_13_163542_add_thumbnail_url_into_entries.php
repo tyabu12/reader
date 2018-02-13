@@ -1,11 +1,10 @@
 <?php
 
-use App\Feed;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddLinkUrlIntoFeeds extends Migration
+class AddThumbnailUrlIntoEntries extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +13,9 @@ class AddLinkUrlIntoFeeds extends Migration
      */
     public function up()
     {
-        Schema::table('feeds', function (Blueprint $table) {
-            $table->string('link_url')->after('feed_url');
+        Schema::table('entries', function (Blueprint $table) {
+            $table->string('thumbnail_url')->nullable();
         });
-
-        Feed::fetchAllFeeds(false);
     }
 
     /**
@@ -28,8 +25,8 @@ class AddLinkUrlIntoFeeds extends Migration
      */
     public function down()
     {
-        Schema::table('feeds', function (Blueprint $table) {
-            $table->dropColumn('link_url');
+        Schema::table('entries', function (Blueprint $table) {
+            $table->dropColumn('thumbnail_url');
         });
     }
 }

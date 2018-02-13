@@ -17,9 +17,10 @@ class Feed extends Model
             ->withTimestamps();
     }
 
-    public function fetch($feed_url)
+    public function fetch($feed_url, $use_cache = true)
     {
         $pie = new \SimplePie();
+        $pie->enable_cache($use_cache);
         $pie->set_cache_location(storage_path('simplepie/cache'));
         $pie->set_cache_duration(env('FEED_CACHE_DURATION'));
         $pie->set_feed_url($feed_url);
@@ -36,11 +37,11 @@ class Feed extends Model
         return $this;
     }
 
-    public static function fetchAllFeeds()
+    public static function fetchAllFeeds($use_cache = true)
     {
         $feeds = Feed::all(['feed_url']);
 
         foreach ($feeds as $feed)
-            $feed->fetch($feed->feed_url);
+            $feed->fetch($feed->feed_url, $use_cache);
     }
 }
