@@ -28,7 +28,7 @@ class Feed extends Model
 
         $this->name = $pie->get_title() ? $pie->get_title()  : '';
         #$this->author =$pie->get_author() ? $pie->get_author() : '';
-        $this->url = $pie->subscribe_url() ? $pie->subscribe_url() : $feed_url;
+        $this->feed_url = $pie->subscribe_url() ? $pie->subscribe_url() : $feed_url;
         #$this->url = $pie->get_link() ? $pie->get_link()   : '';
 
         $this->save();

@@ -22,7 +22,7 @@ class Entry extends Model
         $pie = new \SimplePie();
         $pie->set_cache_location(storage_path('simplepie/cache'));
         $pie->set_cache_duration(env('FEED_CACHE_DURATION'));
-        $pie->set_feed_url($feed->url);
+        $pie->set_feed_url($feed->feed_url);
         if (!$pie->init()) return false;
         $pie->handle_content_type();
 

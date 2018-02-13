@@ -97,7 +97,7 @@ class FeedController extends Controller
         $this->middleware('auth');
 
         $feed_url = $request->feed_url;
-        $feed = Feed::where('url', $feed_url)
+        $feed = Feed::where('feed_url', $feed_url)
             ->first(['id', 'name']);
 
         if (!$feed)
@@ -127,7 +127,7 @@ class FeedController extends Controller
         $this->middleware('auth');
 
         $feed_url = $request->feed_url;
-        $feed = Feed::where('url', $feed_url)
+        $feed = Feed::where('feed_url', $feed_url)
             ->first(['id', 'name']);
 
         if ($feed)

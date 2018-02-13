@@ -16,13 +16,13 @@
                     @if ($feed && $is_subscring)
                         <form method="POST" action="{{ route('feed.unsubscribe') }}">
                             {{ csrf_field() }}
-                            <input type='hidden' name="feed_url" value="{{ $feed->url }}"></input>
+                            <input type='hidden' name="feed_url" value="{{ $feed->feed_url }}"></input>
                             <button type="submit" class="btn btn-primary">{{ __('Unsubscribe') }}</button>
                         </form>
                     @elseif ($feed && !$is_subscring)
                         <form method="POST" action="{{ route('feed.subscribe') }}">
                             {{ csrf_field() }}
-                            <input type='hidden' name="feed_url" value="{{ $feed->url }}"></input>
+                            <input type='hidden' name="feed_url" value="{{ $feed->feed_url }}"></input>
                             <button type="submit" class="btn btn-primary">{{ __('Subscribe') }}</button>
                         </form>
                     @endif
