@@ -8371,8 +8371,20 @@ button.close {
   height: 350px;
 }
 
+@media (min-width: 800px) {
+  .entry.with-img {
+    height: 320px;
+  }
+}
+
 .entry.without-img {
   height: 175px;
+}
+
+@media (min-width: 800px) {
+  .entry.without-img {
+    height: 160px;
+  }
 }
 
 .entry {

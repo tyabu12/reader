@@ -23,8 +23,19 @@
 
 .no-top-padding { padding-top: 0; }
 
-.entry.with-img    { height: 350px; }
-.entry.without-img { height: 175px; }
+.entry.with-img    {
+    height: 350px;
+    @media (min-width: 800px) {
+        height: 320px;
+    }
+}
+
+.entry.without-img {
+    height: 175px;
+    @media (min-width: 800px) {
+        height: 160px;
+    }
+}
 
 .entry {
     border: 0.5px solid #eee;
