@@ -1,0 +1,29 @@
+sudo: required
+dist: trusty
+
+language: php
+php:
+  - 7.1
+
+addons:
+  mariadb: '10.2'
+  chrome: stable
+
+install:
+  - cp .env.travis .env
+  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+
+before_script:
+  - mysql -e 'CREATE DATABASE travis_ci_test;'
+  - php artisan key:generate
+  - php artisan migrate --seed
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - php artisan serve &
+
+script:
+  - php artisan dusk
+  - ./vendor/bin/phpunit --coverage-clover clover.xml
+
+after_success:
+  # send coverage to Codecov
+  - bash <(curl -s https://codecov.io/bash) -cF php
