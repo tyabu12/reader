@@ -5,8 +5,12 @@
 
 **Reader** is a simple RSS reader as Laravel 5.5 test.
 
-# TODO
+## TODO
 
 * Show entry tags and description
 * Add search
 * Multi-language support
+
+## License
+
+[MIT License](LICENSE)
