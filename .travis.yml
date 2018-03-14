@@ -5,10 +5,8 @@ language: php
 php:
   - 7.1
 
-services:
-  - mysql
-
 addons:
+  mariadb: '10.2'
   chrome: stable
 
 install:
